@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">ComplaintFree</string>
+    <plurals name="seconds">
+        <item quantity="one" formatted="false">%1$d second</item>
+        <item quantity="other" formatted="false">%1$d seconds</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one" formatted="false">%1$d minute</item>
+        <item quantity="other" formatted="false">%1$d minute</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one" formatted="false">%1$d hour</item>
+        <item quantity="other" formatted="false">%1$d hours</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one" formatted="false">%1$d day</item>
+        <item quantity="other" formatted="false">%1$d days</item>
+    </plurals>
 </resources>
