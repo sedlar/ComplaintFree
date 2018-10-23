@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">ComplaintFree</string>
+    <string name="app_name">Complaint Free</string>
+    <string name="settings">Settings</string>
     <plurals name="seconds">
         <item quantity="one" formatted="false">%1$d second</item>
         <item quantity="other" formatted="false">%1$d seconds</item>
