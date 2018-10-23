@@ -5,25 +5,30 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import core.InternalState;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private Date last_complaint;
+    // private InternalState internalState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Calendar calendar = Calendar.getInstance();
-        this.last_complaint = calendar.getTime();
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-        updateTime();
-
+        InternalState internalState = new InternalState(getApplicationContext());
+        this.last_complaint = internalState.getBeginningOfHistory();
     }
 
     @Override
