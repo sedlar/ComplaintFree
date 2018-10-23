@@ -34,4 +34,10 @@ public class InternalState {
         }
         return beginningOfHistory;
     }
+
+    public void reset() {
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.remove(this.first_started);
+        editor.apply();
+    }
 }

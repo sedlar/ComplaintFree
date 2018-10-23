@@ -10,6 +10,9 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import core.InternalState;
@@ -17,7 +20,7 @@ import core.InternalState;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Date last_complaint;
+    private InternalState internalState;
     // private InternalState internalState;
 
     @Override
@@ -27,8 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-        InternalState internalState = new InternalState(getApplicationContext());
-        this.last_complaint = internalState.getBeginningOfHistory();
+        internalState = new InternalState(getApplicationContext());
     }
 
     @Override
@@ -50,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
     private void updateTime() {
         Calendar calendar = Calendar.getInstance();
         Date now = calendar.getTime();
-        Integer diff = (int) (now.getTime() - this.last_complaint.getTime()) / 1000;
+        long beginningOfHistory = this.internalState.getBeginningOfHistory().getTime();
+        Integer diff = (int) (now.getTime() - beginningOfHistory) / 1000;
 
         Integer seconds = diff % 60;
         Integer minutes = (diff / 60) % 60;
@@ -66,5 +69,24 @@ public class MainActivity extends AppCompatActivity {
         minutesSinceComplaint.setText(getResources().getQuantityString(R.plurals.minutes, minutes, minutes));
         hoursSinceComplaint.setText(getResources().getQuantityString(R.plurals.hours, hours, hours));
         daysSinceComplaint.setText(getResources().getQuantityString(R.plurals.days, days, days));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.settings:
+                internalState.reset();
+                updateTime();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
