@@ -6,6 +6,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -21,16 +22,13 @@ import core.InternalState;
 public class MainActivity extends AppCompatActivity {
 
     private InternalState internalState;
-    // private InternalState internalState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
         internalState = new InternalState(getApplicationContext());
+        updateTime();
     }
 
     @Override
@@ -82,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.settings:
-                internalState.reset();
+                Intent intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
                 updateTime();
                 return true;
             default:
