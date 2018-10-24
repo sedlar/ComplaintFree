@@ -7,7 +7,9 @@ import android.preference.PreferenceManager;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
+
+import core.db.AppDatabase;
+import core.db.Complaint;
 
 
 public class InternalState {
