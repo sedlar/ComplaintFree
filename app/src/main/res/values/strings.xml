@@ -4,6 +4,7 @@
     <string name="confirm_reset">Do you really want to reset all stats?</string>
     <string name="reset_button">RESET</string>
     <string name="reset_preference">Reset history</string>
+    <string name="report_complaint_button">I have complained!</string>
     <plurals name="seconds">
         <item formatted="false" quantity="one">%1$d second</item>
         <item formatted="false" quantity="other">%1$d seconds</item>

@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import core.InternalState;
@@ -48,10 +49,7 @@ public class MainActivity extends AppCompatActivity {
      }
 
     private void updateTime() {
-        Calendar calendar = Calendar.getInstance();
-        Date now = calendar.getTime();
-        long beginningOfHistory = this.internalState.getBeginningOfHistory().getTime();
-        Integer diff = (int) (now.getTime() - beginningOfHistory) / 1000;
+        Integer diff = this.internalState.getTimeFromLastComplaint();
 
         Integer seconds = diff % 60;
         Integer minutes = (diff / 60) % 60;
@@ -67,6 +65,10 @@ public class MainActivity extends AppCompatActivity {
         minutesSinceComplaint.setText(getResources().getQuantityString(R.plurals.minutes, minutes, minutes));
         hoursSinceComplaint.setText(getResources().getQuantityString(R.plurals.hours, hours, hours));
         daysSinceComplaint.setText(getResources().getQuantityString(R.plurals.days, days, days));
+    }
+
+    public void reportComplaint(View view) {
+        internalState.reportComplaint();
     }
 
     @Override
