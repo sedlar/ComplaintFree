@@ -1,21 +1,17 @@
 package martin.complaintfree;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import core.InternalState;
 
@@ -53,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         Integer seconds = diff % 60;
         Integer minutes = (diff / 60) % 60;
-        Integer hours = (diff / 3600) % 60;
+        Integer hours = (diff / 3600) % 24;
         Integer days = (diff / (86400));
 
         TextView secondsSinceComplaint = findViewById(R.id.seconds_since_last_complaint);
@@ -61,10 +57,20 @@ public class MainActivity extends AppCompatActivity {
         TextView hoursSinceComplaint = findViewById(R.id.hours_since_last_complaint);
         TextView daysSinceComplaint = findViewById(R.id.days_since_last_complaint);
 
-        secondsSinceComplaint.setText(getResources().getQuantityString(R.plurals.seconds, seconds, seconds));
-        minutesSinceComplaint.setText(getResources().getQuantityString(R.plurals.minutes, minutes, minutes));
-        hoursSinceComplaint.setText(getResources().getQuantityString(R.plurals.hours, hours, hours));
-        daysSinceComplaint.setText(getResources().getQuantityString(R.plurals.days, days, days));
+        TextView secondsSinceComplaintLabel = findViewById(R.id.seconds_since_last_complaint_label);
+        TextView minutesSinceComplaintLabel = findViewById(R.id.minutes_since_last_complaint_label);
+        TextView hoursSinceComplaintLabel = findViewById(R.id.hours_since_last_complaint_label);
+        TextView daysSinceComplaintLabel = findViewById(R.id.days_since_last_complaint_label);
+
+        secondsSinceComplaint.setText(String.format(Locale.getDefault(), "%1$d", seconds));
+        minutesSinceComplaint.setText(String.format(Locale.getDefault(), "%1$d", minutes));
+        hoursSinceComplaint.setText(String.format(Locale.getDefault(), "%1$d", hours));
+        daysSinceComplaint.setText(String.format(Locale.getDefault(), "%1$d", days));
+
+        secondsSinceComplaintLabel.setText(getResources().getQuantityString(R.plurals.seconds, seconds));
+        minutesSinceComplaintLabel.setText(getResources().getQuantityString(R.plurals.minutes, minutes));
+        hoursSinceComplaintLabel.setText(getResources().getQuantityString(R.plurals.hours, hours));
+        daysSinceComplaintLabel.setText(getResources().getQuantityString(R.plurals.days, days));
     }
 
     public void reportComplaint(View view) {
