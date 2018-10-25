@@ -17,4 +17,7 @@ public interface ComplaintDao {
 
     @Insert
     void complain(Complaint complaint);
+
+    @Query("DELETE FROM complaint")
+    void reset();
 }

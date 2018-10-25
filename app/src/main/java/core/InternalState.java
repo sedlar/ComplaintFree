@@ -58,6 +58,7 @@ public class InternalState {
     }
 
     public void reset() {
+        db.complaintsDao().reset();
         SharedPreferences.Editor editor = preferences.edit();
         editor.remove(this.first_started);
         editor.apply();
