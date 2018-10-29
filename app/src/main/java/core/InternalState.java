@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import core.db.AppDatabase;
 import core.db.Complaint;
@@ -15,7 +16,7 @@ import core.db.Complaint;
 public class InternalState {
 
     private SharedPreferences preferences;
-    private static final String first_started = "first_started";
+    private final String first_started = "first_started";
     private AppDatabase db;
 
     public InternalState(Context context) {
@@ -48,6 +49,10 @@ public class InternalState {
             editor.apply();
         }
         return diffTime(beginningOfHistory);
+    }
+
+    public List<Complaint> getHistory() {
+        return db.complaintsDao().getAll();
     }
 
     public void reportComplaint() {

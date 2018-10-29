@@ -9,7 +9,7 @@ import java.util.List;
 
 @Dao
 public interface ComplaintDao {
-    @Query("SELECT * FROM complaint")
+    @Query("SELECT * FROM complaint ORDER BY complaint_date DESC")
     List<Complaint> getAll();
 
     @Query("SELECT * FROM complaint ORDER BY complaint_date DESC LIMIT 1")
