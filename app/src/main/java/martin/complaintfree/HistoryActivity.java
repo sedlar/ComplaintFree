@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 
 import core.InternalState;
 import core.history.HistoryAdapter;
@@ -13,14 +14,14 @@ public class HistoryActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-
+    private InternalState internalState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-        InternalState internalState = new InternalState(getApplicationContext());
+        internalState = new InternalState(getApplicationContext());
 
         mRecyclerView = (RecyclerView) findViewById(R.id.history_recycler_view);
 
@@ -39,4 +40,17 @@ public class HistoryActivity extends AppCompatActivity {
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         mRecyclerView.addItemDecoration(itemDecoration);
     }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+    int position = item.getGroupId();
+    switch (item.getItemId()) {
+        case R.id.delete:
+            internalState.deleteItem(position);
+            mAdapter.notifyItemRemoved(position);
+            return true;
+        default:
+            return super.onContextItemSelected(item);
+    }
+}
 }

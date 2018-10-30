@@ -6,6 +6,7 @@
     <string name="reset_preference">Reset history</string>
     <string name="report_complaint_button">I have complained!</string>
     <string name="history">History of complaints</string>
+    <string name="delete">Delete</string>
     <plurals name="seconds">
         <item formatted="false" quantity="one">second</item>
         <item formatted="false" quantity="other">seconds</item>

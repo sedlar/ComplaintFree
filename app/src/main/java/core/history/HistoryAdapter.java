@@ -1,7 +1,9 @@
 package core.history;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -19,12 +21,18 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryI
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    public static class HistoryItemHolder extends RecyclerView.ViewHolder {
+    public static class HistoryItemHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
         // each data item is just a string in this case
         public TextView complaintTime;
         public HistoryItemHolder(View itemView) {
             super(itemView);
             complaintTime = itemView.findViewById(R.id.complaint_time);
+            itemView.setOnCreateContextMenuListener(this);
+        }
+
+        @Override
+        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo info) {
+            menu.add(this.getAdapterPosition(), R.id.delete, Menu.NONE, R.string.delete);
         }
     }
 
@@ -60,5 +68,4 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryI
     public int getItemCount() {
         return internalState.getHistory().size();
     }
-
 }

@@ -68,4 +68,13 @@ public class InternalState {
         editor.remove(this.first_started);
         editor.apply();
     }
+
+    public void deleteItem(int position) {
+        List<Complaint> history = db.complaintsDao().getAll();
+        db.complaintsDao().deleteComplaint(history.get(position));
+    }
+
+    public int complaintsNumber() {
+        return db.complaintsDao().getAll().size();
+    }
 }
