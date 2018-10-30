@@ -1,0 +1,30 @@
+<resources>
+<string name="app_name">Svět bez stížností</string>
+<string name="settings">Nastavení</string>
+<string name="confirm_reset">Opravdu chceš smazat všechny stížnosti?</string>
+<string name="reset_button">SMAZAT</string>
+<string name="reset_preference">Smazat historii</string>
+<string name="report_complaint_button">Nahlásit stížnost!</string>
+<string name="history">Historie stížností</string>
+<string name="delete">Smazat</string>
+<plurals name="seconds">
+    <item formatted="false" quantity="one">vteřina</item>
+    <item formatted="false" quantity="few">vteřiny</item>
+    <item formatted="false" quantity="other">vteřin</item>
+</plurals>
+<plurals name="minutes">
+    <item formatted="false" quantity="one">minuta</item>
+    <item formatted="false" quantity="few">minuty</item>
+    <item formatted="false" quantity="other">minut</item>
+</plurals>
+<plurals name="hours">
+    <item formatted="false" quantity="one">hodina</item>
+    <item formatted="false" quantity="few">hodiny</item>
+    <item formatted="false" quantity="other">hodin</item>
+</plurals>
+<plurals name="days">
+    <item formatted="false" quantity="one">den</item>
+    <item formatted="false" quantity="few">dny</item>
+    <item formatted="false" quantity="other">dnů</item>
+</plurals>
+</resources>
