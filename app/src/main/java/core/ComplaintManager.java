@@ -48,7 +48,7 @@ public class ComplaintManager {
             return diffTime(complaint.getComplaint_date());
         }
 
-        long storedBeginningOfHistory = this.preferences.getLong(this.first_started, 0);
+        long storedBeginningOfHistory = getBeginningOfHistory();
 
         if (storedBeginningOfHistory != 0) {
             beginningOfHistory = new Date(storedBeginningOfHistory);
@@ -84,7 +84,7 @@ public class ComplaintManager {
         db.complaintsDao().deleteComplaint(history.get(position));
     }
 
-    public int complaintsNumber() {
-        return db.complaintsDao().getAll().size();
+    public long getBeginningOfHistory() {
+        return this.preferences.getLong(this.first_started, 0);
     }
 }

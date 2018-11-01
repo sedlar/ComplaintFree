@@ -30,8 +30,4 @@ public class Complaint {
     public void setUid(int uid) {
         this.uid = uid;
     }
-
-    public void setComplaint_date(Date complaint_date) {
-        this.complaint_date = complaint_date;
-    }
 }

@@ -4,6 +4,13 @@
     <string name="confirm_reset">Do you really want to reset all stats?</string>
     <string name="reset_button">RESET</string>
     <string name="reset_preference">Reset history</string>
+    <string name="reset_activity_label">Reset history</string>
+    <string name="statistics_activity_label">Statistics</string>
+    <string name="statistics_max_duration_label">Maximum</string>
+    <string name="statistics_average_duration_label">Average</string>
+    <string name="statistics_median_duration_label">Median</string>
+    <string name="statistics_count_duration_label">Complaints count</string>
+    <string name="statistics_current_duration_label">Current no complaint time</string>
     <string name="report_complaint_button">I have complained!</string>
     <string name="history">History of complaints</string>
     <string name="delete">Delete</string>

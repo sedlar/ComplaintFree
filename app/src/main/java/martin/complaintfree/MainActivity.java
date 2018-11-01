@@ -88,6 +88,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent;
         switch (item.getItemId()) {
+            case R.id.statistics:
+                intent = new Intent(this, StatisticsActivity.class);
+                startActivity(intent);
+                return true;
             case R.id.history:
                 intent = new Intent(this, HistoryActivity.class);
                 startActivity(intent);

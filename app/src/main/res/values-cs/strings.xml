@@ -4,6 +4,13 @@
 <string name="confirm_reset">Opravdu chceš smazat všechny stížnosti?</string>
 <string name="reset_button">SMAZAT</string>
 <string name="reset_preference">Smazat historii</string>
+<string name="reset_activity_label">Smazat historii</string>
+<string name="statistics_activity_label">Statistiky</string>
+<string name="statistics_max_duration_label">Maximum</string>
+<string name="statistics_average_duration_label">Průměr</string>
+<string name="statistics_median_duration_label">Medián</string>
+<string name="statistics_count_duration_label">Počet stížností</string>
+<string name="statistics_current_duration_label">Aktuálně bez stížnosti</string>
 <string name="report_complaint_button">Nahlásit stížnost!</string>
 <string name="history">Historie stížností</string>
 <string name="delete">Smazat</string>

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/statistics"
+        android:title="@string/statistics_activity_label" />
     <item android:id="@+id/history"
         android:title="@string/history" />
     <item android:id="@+id/settings"

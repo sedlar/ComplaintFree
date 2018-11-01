@@ -16,8 +16,8 @@ public class ResetActivity extends AppCompatActivity {
     }
 
     public void reset(View view) {
-        ComplaintManager state = ComplaintManager.getInstance(getApplicationContext());
-        state.reset();
+        ComplaintManager complaintManager = ComplaintManager.getInstance(getApplicationContext());
+        complaintManager.reset();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
