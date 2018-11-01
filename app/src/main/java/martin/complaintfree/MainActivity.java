@@ -13,18 +13,18 @@ import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import core.InternalState;
+import core.ComplaintManager;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    private InternalState internalState;
+    private ComplaintManager complaintManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        internalState = new InternalState(getApplicationContext());
+        complaintManager = ComplaintManager.getInstance(getApplicationContext());
         updateTime();
     }
 
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
      }
 
     private void updateTime() {
-        Integer diff = this.internalState.getTimeFromLastComplaint();
+        Integer diff = this.complaintManager.getTimeFromLastComplaint();
 
         Integer seconds = diff % 60;
         Integer minutes = (diff / 60) % 60;
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void reportComplaint(View view) {
-        internalState.reportComplaint();
+        complaintManager.reportComplaint();
     }
 
     @Override

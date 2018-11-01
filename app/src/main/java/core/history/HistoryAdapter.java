@@ -11,12 +11,12 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-import core.InternalState;
+import core.ComplaintManager;
 import core.db.Complaint;
 import martin.complaintfree.R;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryItemHolder> {
-    private InternalState internalState;
+    private ComplaintManager complaintManager;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -37,8 +37,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryI
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public HistoryAdapter(InternalState internalState) {
-        this.internalState = internalState;
+    public HistoryAdapter(ComplaintManager complaintManager) {
+        this.complaintManager = complaintManager;
     }
 
     // Create new views (invoked by the layout manager)
@@ -56,7 +56,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryI
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(HistoryItemHolder holder, int position) {
-        List<Complaint> history = internalState.getHistory();
+        List<Complaint> history = complaintManager.getHistory();
         Complaint complaintItem = history.get(position);
         SimpleDateFormat format = new SimpleDateFormat();
         String complaintTime = format.format(complaintItem.getComplaint_date());
@@ -66,6 +66,6 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryI
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return internalState.getHistory().size();
+        return complaintManager.getHistory().size();
     }
 }

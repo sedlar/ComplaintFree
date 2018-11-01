@@ -13,15 +13,25 @@ import core.db.AppDatabase;
 import core.db.Complaint;
 
 
-public class InternalState {
+public class ComplaintManager {
 
+    private static ComplaintManager instance;
     private SharedPreferences preferences;
     private final String first_started = "first_started";
     private AppDatabase db;
 
-    public InternalState(Context context) {
-        preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        db = Room.databaseBuilder(context, AppDatabase.class, "complaints").allowMainThreadQueries().build();
+    private ComplaintManager(SharedPreferences preferences, AppDatabase db) {
+        this.preferences = preferences;
+        this.db = db;
+    }
+
+    public static ComplaintManager getInstance(Context applicationContext) {
+        if (instance == null) {
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(applicationContext);
+            AppDatabase db = Room.databaseBuilder(applicationContext, AppDatabase.class, "complaints").allowMainThreadQueries().build();
+            instance = new ComplaintManager(preferences, db);
+        }
+        return instance;
     }
 
     private int diffTime(Date previousDate) {

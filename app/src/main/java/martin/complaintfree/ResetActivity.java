@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import core.InternalState;
+import core.ComplaintManager;
 
 public class ResetActivity extends AppCompatActivity {
 
@@ -16,7 +16,7 @@ public class ResetActivity extends AppCompatActivity {
     }
 
     public void reset(View view) {
-        InternalState state = new InternalState(getApplicationContext());
+        ComplaintManager state = ComplaintManager.getInstance(getApplicationContext());
         state.reset();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

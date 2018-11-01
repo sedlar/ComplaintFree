@@ -7,21 +7,21 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 
-import core.InternalState;
+import core.ComplaintManager;
 import core.history.HistoryAdapter;
 
 public class HistoryActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private InternalState internalState;
+    private ComplaintManager complaintManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-        internalState = new InternalState(getApplicationContext());
+        complaintManager = ComplaintManager.getInstance(getApplicationContext());
 
         mRecyclerView = (RecyclerView) findViewById(R.id.history_recycler_view);
 
@@ -34,7 +34,7 @@ public class HistoryActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new HistoryAdapter(internalState);
+        mAdapter = new HistoryAdapter(complaintManager);
         mRecyclerView.setAdapter(mAdapter);
 
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
@@ -46,7 +46,7 @@ public class HistoryActivity extends AppCompatActivity {
     int position = item.getGroupId();
     switch (item.getItemId()) {
         case R.id.delete:
-            internalState.deleteItem(position);
+            complaintManager.deleteItem(position);
             mAdapter.notifyItemRemoved(position);
             return true;
         default:
