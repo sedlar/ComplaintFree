@@ -14,6 +14,7 @@ import java.util.TimerTask;
 
 import core.ComplaintManager;
 import core.db.Complaint;
+import core.utils.TimeUnitsCalculator;
 
 public class StatisticsActivity extends AppCompatActivity {
 
@@ -66,16 +67,13 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     private String formatDuration(long duration) {
-        int seconds = (int) duration % 60;
-        int minutes = (int) (duration / 60) % 60;
-        int hours = (int) (duration / 3600) % 60;
-        int days = (int) (duration / (24*3600));
+        TimeUnitsCalculator formatted_duration = new TimeUnitsCalculator(duration);
 
         String total = "";
-        total = addStrTime(days, total, "d");
-        total = addStrTime(hours, total, "h");
-        total = addStrTime(minutes, total, "m");
-        total = addStrTime(seconds, total, "s");
+        total = addStrTime(formatted_duration.getDays(), total, "d");
+        total = addStrTime(formatted_duration.getHours(), total, "h");
+        total = addStrTime(formatted_duration.getMinutes(), total, "m");
+        total = addStrTime(formatted_duration.getSeconds(), total, "s");
         return total;
     }
 

@@ -14,6 +14,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import core.ComplaintManager;
+import core.utils.TimeUnitsCalculator;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -46,11 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateTime() {
         Integer diff = this.complaintManager.getTimeFromLastComplaint();
-
-        Integer seconds = diff % 60;
-        Integer minutes = (diff / 60) % 60;
-        Integer hours = (diff / 3600) % 24;
-        Integer days = (diff / (86400));
+        TimeUnitsCalculator duration = new TimeUnitsCalculator(diff);
 
         TextView secondsSinceComplaint = findViewById(R.id.seconds_since_last_complaint);
         TextView minutesSinceComplaint = findViewById(R.id.minutes_since_last_complaint);
@@ -62,15 +59,15 @@ public class MainActivity extends AppCompatActivity {
         TextView hoursSinceComplaintLabel = findViewById(R.id.hours_since_last_complaint_label);
         TextView daysSinceComplaintLabel = findViewById(R.id.days_since_last_complaint_label);
 
-        secondsSinceComplaint.setText(String.format(Locale.getDefault(), "%1$d", seconds));
-        minutesSinceComplaint.setText(String.format(Locale.getDefault(), "%1$d", minutes));
-        hoursSinceComplaint.setText(String.format(Locale.getDefault(), "%1$d", hours));
-        daysSinceComplaint.setText(String.format(Locale.getDefault(), "%1$d", days));
+        secondsSinceComplaint.setText(String.format(Locale.getDefault(), "%1$d", duration.getSeconds()));
+        minutesSinceComplaint.setText(String.format(Locale.getDefault(), "%1$d", duration.getMinutes()));
+        hoursSinceComplaint.setText(String.format(Locale.getDefault(), "%1$d", duration.getHours()));
+        daysSinceComplaint.setText(String.format(Locale.getDefault(), "%1$d", duration.getDays()));
 
-        secondsSinceComplaintLabel.setText(getResources().getQuantityString(R.plurals.seconds, seconds));
-        minutesSinceComplaintLabel.setText(getResources().getQuantityString(R.plurals.minutes, minutes));
-        hoursSinceComplaintLabel.setText(getResources().getQuantityString(R.plurals.hours, hours));
-        daysSinceComplaintLabel.setText(getResources().getQuantityString(R.plurals.days, days));
+        secondsSinceComplaintLabel.setText(getResources().getQuantityString(R.plurals.seconds, duration.getSeconds()));
+        minutesSinceComplaintLabel.setText(getResources().getQuantityString(R.plurals.minutes, duration.getMinutes()));
+        hoursSinceComplaintLabel.setText(getResources().getQuantityString(R.plurals.hours, duration.getHours()));
+        daysSinceComplaintLabel.setText(getResources().getQuantityString(R.plurals.days, duration.getDays()));
     }
 
     public void reportComplaint(View view) {
