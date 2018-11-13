@@ -51,7 +51,7 @@ public class StatisticsActivity extends AppCompatActivity {
         long averageNoComplaintTime = getAverageNoComplaintInteval(durations);
         long medianNoComplaintTime = getMedianNoComplaintInterval(durations);
         long maxNoComplaintTime = Collections.max(durations);
-        long complaintsCount = durations.size();
+        long complaintsCount = history.size();
 
         TextView currentNoComplaintView = findViewById(R.id.statistics_current_field);
         TextView maxView = findViewById(R.id.statistics_max_field);
